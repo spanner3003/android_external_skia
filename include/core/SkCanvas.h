@@ -108,7 +108,9 @@ public:
      *  the new device.
      */
     SkDevice* setBitmapDevice(const SkBitmap& bitmap, bool forLayer = false);
-
+#ifdef SGT7_BITMAP_HACK
+    SkDevice* setBitmapDevice(const SkBitmap& bitmap);
+#endif
     /**
      *  Return the current device factory, or NULL. The reference count of
      *  the returned factory is not changed.

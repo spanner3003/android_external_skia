@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#define SGT7_BITMAP_HACK
 
 #include "SkCanvas.h"
 #include "SkBounder.h"
@@ -553,6 +554,12 @@ SkDevice* SkCanvas::setDevice(SkDevice* device) {
     }
     return device;
 }
+
+#ifdef SGT7_BITMAP_HACK
+SkDevice* SkCanvas::setBitmapDevice(SkBitmap const& bitmap) {
+    return setBitmapDevice(bitmap, false);
+}
+#endif
 
 SkDevice* SkCanvas::setBitmapDevice(const SkBitmap& bitmap, bool forLayer) {
     SkDevice* device = this->setDevice(SkNEW_ARGS(SkDevice, (this, bitmap, forLayer)));
